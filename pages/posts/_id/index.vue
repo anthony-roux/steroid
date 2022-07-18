@@ -1,12 +1,14 @@
 <template lang="">
   <div class="single-post-page">
     <section class="post">
-      <h2 class="post-title">Title of the post</h2>
+      <h2 class="post-title">{{ loadedPost.title }}</h2>
       <div class="post-details">
-        <div class="post-detail">Last updated on XXX</div>
-        <div class="post-detail">Written by NAME</div>
+        <div class="post-detail">
+          Last updated on {{ loadedPost.updatedDate | date }}
+        </div>
+        <div class="post-detail">Written by {{ loadedPost.author }}</div>
       </div>
-      <p class="post-content">content</p>
+      <p class="post-content">{{ loadedPost.content }}</p>
     </section>
     <section class="post-feedback">
       <p>
@@ -17,7 +19,41 @@
   </div>
 </template>
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  asyncData(context) {
+    return axios
+      .get(
+        process.env.baseUrl + "/posts/" +
+          context.params.id +
+          ".json"
+      )
+      .then(res => {
+        return {
+          loadedPost: res.data
+        }
+      })
+      .catch((e) => context.error(e));
+  },
+  // asyncData(context, callback) {
+  //   setTimeout(() => {
+  //     callback(null, {
+  //       loaddedPost: {
+  //         id: "1",
+  //         title: "My 1st post ! (ID: " + context.params.id + ")",
+  //         previewText: "Super cool, thanks for that !",
+  //         author: "Anthony",
+  //         updatedDate: new Date(),
+  //         content:
+  //           "Consectetur laboris reprehenderit dolor adipisicing incididunt est est tempor.",
+  //         thumbnailLink:
+  //           "https://img.freepik.com/photos-premium/toucher-monde-virtuel-reseau-connexion_50039-1565.jpg?w=2000",
+  //       },
+  //     });
+  //   }, 1000);
+  // },
+};
 </script>
 <style lang="css" scoped>
 .single-post-page {

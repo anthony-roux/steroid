@@ -1,13 +1,22 @@
-<template lang="">
-  <div class="container">
-    <h2 class="text-center">Oops! An error occured, we're so sorry !</h2>
+<template>
+  <div class="error-page">
+    <h1>Oops, something went wrong!</h1>
+    <p>Back to <a href="/">safety</a>!</p>
   </div>
 </template>
-<script>
-export default {
-  
+
+<style scoped>
+.error-page {
+  text-align: center;
 }
-</script>
-<style lang="">
-  
+
+.error-page a {
+  text-decoration: none;
+  color: red;
+}
+
+.error-page a:hover,
+.error-page a:active {
+  color: salmon;
+}
 </style>

@@ -1,18 +1,22 @@
 <template>
-  <div class="home-page">
-    <section class="intro">
-      <h2>Get the lasted tech news</h2>
+  <div class="admin-page">
+    <section class="new-post">
+      <AppButton @click="$router.push('/admin/new-post/')"
+        >Create Post</AppButton
+      >
     </section>
-    <PostList :posts="loadedPosts" />
+    <section class="existing-posts">
+      <h2>Existing Posts</h2>
+      <PostList isAdmin :posts="loadedPosts" />
+    </section>
   </div>
 </template>
-
 <script>
 
 export default {
-  // asyncData(context, callback) {
-  //   console.log("AsyncData is executed ! ")
-  //   // console.log(context)
+  layout: "admin",
+
+  //   asyncData(context, callback) {
   //   setTimeout(() => {
   //     callback(null, {
   //       loadedPosts: [
@@ -48,55 +52,26 @@ export default {
   //     });
   //   }, 1500);
   // },
-  data() {
-    return {};
-  },
+
   computed: {
     loadedPosts() {
       return this.$store.getters.loadedPosts;
     },
-  },
+  },  
 };
 </script>
-
-<style scoped lang="css">
-.intro {
-  height: 300px;
-  position: relative;
-  padding: 30px;
-  box-sizing: border-box;
-  background-position: center;
-  background-size: cover;
-  background-image: url("~assets/images/filters_quality-80.jpeg");
-}
-
-.intro h2 {
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  width: 90%;
-  font-size: 1.5rem;
-  color: black;
-  background-color: rgb(211, 211, 211);
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 3px 3px 3px black;
-  box-sizing: border-box;
-  border: 1px solid black;
-}
-
-@media (min-width: 768px) {
-  .intro h2 {
-    font-size: 2rem;
-  }
-}
-
-.featured-posts {
-  display: flex;
+<style lang="css">
+.admin-page {
   padding: 20px;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+}
+
+.new-post {
+  text-align: center;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.existing-posts h1 {
+  text-align: center;
 }
 </style>

@@ -1,14 +1,16 @@
 <template lang="">
   <div>
-    <Header />
+    <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
+    <TheSidenav :show="displaySidenav" @close="displaySidenav = false" />
     <nuxt />
   </div>
 </template>
 <script>
-import Header from "@/components/Header.vue";
 export default {
-  components: {
-    Header,
+  data() {
+    return {
+      displaySidenav: false,
+    };
   },
 };
 </script>
