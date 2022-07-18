@@ -78,4 +78,8 @@ export default {
     name: "fade",
     mode: "out-in",
   },
+
+  publicRuntimeConfig: {
+    assetsPath: process.env.NODE_ASSETS_PATH,
+  },
 };
