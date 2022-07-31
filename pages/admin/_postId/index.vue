@@ -10,12 +10,13 @@ import axios from "axios";
 export default {
   layout: "admin",
 
+// asyncData fonctionne coté serveur donc le module $axios n'est pas disponible, il faut donc l'appeler avec le context.app
   asyncData(context) {
-    return axios
-      .get(process.env.baseUrl + "/posts/" + context.params.postId + ".json")
-      .then((res) => {
+    return context.app.$axios
+      .$get(process.env.baseUrl + "/posts/" + context.params.postId + ".json")
+      .then((data) => {
         return {
-          loadedPost: { ...res.data, id: context.params.postId },
+          loadedPost: { ...data, id: context.params.postId },
         };
       })
       .catch((e) => context.error(e));

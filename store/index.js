@@ -1,5 +1,5 @@
 import Vuex from "vuex";
-import axios from "axios";
+// import axios from "axios";
 
 const createStore = () => {
   return new Vuex.Store({
@@ -22,12 +22,12 @@ const createStore = () => {
     },
     actions: {
       nuxtServerInit(vuexContext, context) {
-        return axios
-          .get(process.env.baseUrl + "/posts.json")
-          .then((res) => {
+        return context.app.$axios
+          .$get("/posts.json")
+          .then((data) => {
             const postsArray = [];
-            for (const key in res.data) {
-              postsArray.push({ ...res.data[key], id: key });
+            for (const key in data) {
+              postsArray.push({ ...data[key], id: key });
             }
             vuexContext.commit("setPosts", postsArray);
           })
@@ -70,22 +70,22 @@ const createStore = () => {
       },
       addPost(vuexContext, post) {
         const createdPost = { ...post, updatedDate: new Date() };
-        axios
-          .post(
+        this.$axios
+          .$post(
             "https://steroid-4e07e-default-rtdb.europe-west1.firebasedatabase.app/posts.json",
             createdPost
           )
-          .then((result) =>
+          .then((data) =>
             vuexContext.commit("addPost", {
               ...createdPost,
-              id: result.data.name,
+              id: data.name,
             })
           )
           .catch((e) => console.log(e));
       },
       editPost(vuexContext, editedPost) {
-        return axios
-          .put(
+        return this.$axios
+          .$put(
             "https://steroid-4e07e-default-rtdb.europe-west1.firebasedatabase.app/posts/" +
               editedPost.id +
               ".json",
