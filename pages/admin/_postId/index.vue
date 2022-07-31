@@ -9,8 +9,9 @@
 import axios from "axios";
 export default {
   layout: "admin",
+  middleware: "auth",
 
-// asyncData fonctionne coté serveur donc le module $axios n'est pas disponible, il faut donc l'appeler avec le context.app
+  // asyncData fonctionne coté serveur donc le module $axios n'est pas disponible, il faut donc l'appeler avec le context.app
   asyncData(context) {
     return context.app.$axios
       .$get(process.env.baseUrl + "/posts/" + context.params.postId + ".json")

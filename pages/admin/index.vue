@@ -15,7 +15,7 @@
 
 export default {
   layout: "admin",
-
+  middleware: "auth",
   //   asyncData(context, callback) {
   //   setTimeout(() => {
   //     callback(null, {
@@ -57,7 +57,7 @@ export default {
     loadedPosts() {
       return this.$store.getters.loadedPosts;
     },
-  },  
+  },
 };
 </script>
 <style lang="css">

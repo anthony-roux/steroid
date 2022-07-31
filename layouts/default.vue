@@ -7,6 +7,8 @@
 </template>
 <script>
 export default {
+  // middleware: 'log',
+
   data() {
     return {
       displaySidenav: false,

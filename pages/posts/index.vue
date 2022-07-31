@@ -5,6 +5,7 @@
 </template>
 <script>
 export default {
+  middleware: 'log',
   // s'execute comme AsyncData sur le coté Serveur, lors du 1er chargement ou sur le client, il se comporte donc exactement comme les données asyncrones.
   // Il obtient aussi le meme objet context
 

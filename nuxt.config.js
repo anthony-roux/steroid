@@ -59,13 +59,14 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
   ],
 
   axios: {
-    baseURL: process.env.BASE_URL ||
-    "https://steroid-4e07e-default-rtdb.europe-west1.firebasedatabase.app",
-    credentials: false
+    baseURL:
+      process.env.BASE_URL ||
+      "https://steroid-4e07e-default-rtdb.europe-west1.firebasedatabase.app",
+    credentials: false,
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
@@ -74,10 +75,12 @@ export default {
     baseUrl:
       process.env.BASE_URL ||
       "https://steroid-4e07e-default-rtdb.europe-west1.firebasedatabase.app",
+    fb_apikey: 'AIzaSyB6jjTBzkmLhDbT7qi0C - fITVNjFMlsSyk',
   },
 
   router: {
     // linkActiveClass: 'active-link'
+    // middleware: 'log'
   },
 
   transition: {
